@@ -1,6 +1,6 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- Configured by /setup for Laura Moreno (Fürth, Germany). Re-run `/setup --section search` to update. -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
@@ -12,69 +12,89 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Primary (German market; `arbeitnow-search` CLI installed - add more with `/add-portal`, e.g. StepStone):
+- **stepstone.de** - largest general job board in Germany
+- **arbeitnow.com** - English-friendly German board, also visa-sponsored and remote roles; primary path is the `arbeitnow-search` CLI (it only scans the newest ~900 postings, so the `site:` lines below also reach older ones)
+- **linkedin.com/jobs** - filter: Germany / Nürnberg, Erlangen, Fürth, München; also covered by `linkedin-search` CLI
+- **de.indeed.com** - broad aggregator
+- **xing.com/jobs** - German professional network
+- **join.com / startup boards (e.g. berlinstartupjobs.com, wellfound.com)** - small startups (candidate preference)
 
 Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+- Direct Google searches with `site:` filters for target companies, Flexera / ServiceNow / Snow (Flexera) SAM partners
+
+Danish portal demos stay **disabled** (candidate is in Germany).
 
 ## Query Categories
 
-Queries are grouped by priority. Write **each category in every language from your Languages table** (see Language scope above). Combine each query with your location terms (e.g. your city, region, or metro area) where the site supports it.
+Queries run in **English and German** (German declared at B1 - German-language postings that require fluent German are FLAGGED, not excluded; candidate applies to German-speaking roles and notes she is improving her German). Spanish is native but rarely a job language in this market; add Spanish queries only for Spanish/LatAm-facing roles.
 
-**Organize by function, not job title.** The same underlying work carries different titles across companies and markets (a "Data Scientist" role at one employer may be posted as "Insights Analyst" or "Data Consultant" at another). Name each priority category after the function it covers, and list several plausible job titles as query variants within that category rather than betting an entire priority tier on one exact title string.
+Location terms: `Nürnberg`, `Erlangen`, `Fürth`, `München`, `Bayern`, `Remote Deutschland`.
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
+### Priority 1: Software Asset & License Management (SAM / ITAM)
 
-These match your strongest and most desired career direction.
-
-```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE_2]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE_1]" [YOUR_COUNTRY]
-```
-
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
-
-These match your domain expertise.
+Strongest, most desired direction. Title variants: Software Asset Manager, SAM Manager, ITAM Manager, IT License Manager, License Compliance Manager, Lizenzmanager, Software Asset Management Specialist.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
+site:stepstone.de "Software Asset Manager" OR "Lizenzmanager" Nürnberg OR Erlangen OR München
+site:stepstone.de "IT Asset Management" Bayern
+site:linkedin.com/jobs "Software Asset Management" Germany
+site:linkedin.com/jobs "License Manager" OR "Lizenzmanagement" Nürnberg
+site:de.indeed.com "Flexera" Bayern
+site:arbeitnow.com "Software Asset" OR "License Manager" OR "Lizenzmanager"
+site:arbeitnow.com "Flexera" OR "ITAM" OR "Lizenzmanagement"
+"Flexera" "SAM" job Germany remote
 ```
 
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
+### Priority 2: Vendor, Provider & Supplier Management
 
-Adjacent roles you could pivot into.
-
-```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
-```
-
-### Priority 4: Broader Technical / Consulting
-
-Wider net for general technical roles.
+Domain expertise. Title variants: IT Vendor Manager, Provider Manager, Supplier Manager, IT Sourcing Manager, Lieferantenmanager IT, Dienstleistersteuerung.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:stepstone.de "IT Vendor Manager" OR "Provider Manager" Bayern
+site:stepstone.de "Lieferantenmanagement IT" OR "Dienstleistersteuerung" Nürnberg OR München
+site:linkedin.com/jobs "Vendor Management" IT Germany
+site:linkedin.com/jobs "Supplier Manager" software Erlangen OR Nürnberg
+site:arbeitnow.com "Vendor Manager" OR "Supplier Manager" OR "Lieferantenmanager" IT
 ```
+
+### Priority 3: Product Owner & IT / Digital Project Management
+
+Title variants: Product Owner, IT Project Manager, Digital Project Manager, Technical Project Manager, IT-Projektleiter, Projektmanager Digitalisierung. Include small startups.
+
+```
+site:stepstone.de "Product Owner" Nürnberg OR Erlangen OR Fürth
+site:stepstone.de "IT-Projektleiter" OR "IT Project Manager" Nürnberg
+site:linkedin.com/jobs "Product Owner" startup Germany
+site:linkedin.com/jobs "Digital Project Manager" München OR Nürnberg
+site:join.com "Product Owner" OR "Project Manager" Nürnberg OR München OR remote
+site:arbeitnow.com "Product Owner" Nürnberg OR Erlangen OR München OR remote
+site:arbeitnow.com "IT Project Manager" OR "IT-Projektleiter" Bayern
+```
+
+### Priority 4: Adjacent - FinOps, IT Procurement, IT Governance, SAM Consulting
+
+Wider net. Title variants: FinOps Analyst/Manager, Cloud Cost Manager, IT Procurement Manager, Software Category Manager, Einkäufer IT / Software, IT Governance & Compliance Manager, SAM Consultant.
+
+```
+site:linkedin.com/jobs "FinOps" Germany
+site:stepstone.de "Category Manager Software" OR "Einkäufer IT" Bayern
+site:stepstone.de "IT Governance" OR "IT Compliance Manager" Nürnberg OR München
+site:linkedin.com/jobs "SAM Consultant" OR "ServiceNow SAM" Germany
+site:arbeitnow.com "FinOps" OR "IT Procurement" OR "Einkäufer IT"
+```
+
+## Key Skill Terms
+
+Flexera, SAM, ITAM, license management / Lizenzmanagement, vendor management, Product Owner, PSPO, license compliance, ASPICE, CapEx/OpEx.
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+Candidate has no commute constraints (on-site, hybrid and remote all acceptable).
+- **Ideal:** Fürth, Nürnberg, Erlangen (Nuremberg metro)
+- **Acceptable:** Bavaria within ~1.5 h by train (München, Bamberg, Würzburg, Ingolstadt, Regensburg, Roth); fully remote within Germany
+- **Borderline:** Hybrid roles elsewhere in Germany (check on-site frequency)
+- **Too far:** On-site roles outside Germany requiring relocation (confirm with candidate)
 
 ## Language Filter
 
